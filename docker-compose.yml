@@ -7,5 +7,17 @@ services:
       - "443:443"
     volumes:
       - caddy_data:/data
+
+  postgres:
+    image: postgres:14.2-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+        POSTGRES_DB: ${POSTGRES_DB:-database}
+        POSTGRES_USER: ${POSTGRES_USER:-user}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+
+
 volumes:
   caddy_data:
+  postgres_data:
