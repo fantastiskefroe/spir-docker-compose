@@ -1,9 +1,11 @@
-version: "3.9"
+version: "3.4"
 services:
-  proxy:
+  caddy:
     image: ghcr.io/fantastiskefroe/spir-caddy:latest
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - caddy_data:/data
+volumes:
+  caddy_data:
