@@ -1,6 +1,6 @@
 version: "3.4"
 services:
-  caddy:
+  spir-caddy:
     image: ghcr.io/fantastiskefroe/spir-caddy:latest
     ports:
       - "80:80"
@@ -9,6 +9,15 @@ services:
       - caddy_data:/data
       - caddy_config:/config
 
+  spir-ingest:
+    image: ghcr.io/fantastiskefroe/spir-ingest:latest
+    volumes:
+      - ./spir-ingest/application.override.yml:/application.yml
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-database}
+      POSTGRES_USER: ${POSTGRES_USER:-user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+
   postgres:
     image: postgres:14.2-alpine
     volumes:
@@ -16,9 +25,9 @@ services:
     ports: 
       - 127.0.0.1:5432:5432
     environment:
-        POSTGRES_DB: ${POSTGRES_DB:-database}
-        POSTGRES_USER: ${POSTGRES_USER:-user} 
-        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-database}
+      POSTGRES_USER: ${POSTGRES_USER:-user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
 
     
 volumes:
