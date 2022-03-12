@@ -9,6 +9,8 @@ services:
       - caddy_data:/data
       - caddy_config:/config
 
+  spir-app:
+    image: ghcr.io/fantastiskefroe/spir-app:latest
 
   spir-ingest:
     depends_on:
