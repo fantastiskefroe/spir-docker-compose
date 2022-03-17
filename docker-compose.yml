@@ -8,9 +8,11 @@ services:
     volumes:
       - caddy_data:/data
       - caddy_config:/config
+    restart: always
 
   spir-app:
     image: ghcr.io/fantastiskefroe/spir-app:latest
+    restart: always
 
   spir-ingest:
     depends_on:
@@ -24,6 +26,8 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-user}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
       SHOPIFY_HMAC_KEY: ${SHOPIFY_HMAC_KEY:-testkey}
+      
+    restart: always
 
   postgres:
     image: postgres:14.2-alpine
@@ -35,6 +39,7 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-database}
       POSTGRES_USER: ${POSTGRES_USER:-user}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+    restart: always
 
     
 volumes:
