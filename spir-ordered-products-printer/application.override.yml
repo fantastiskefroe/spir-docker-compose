@@ -1,0 +1,9 @@
+app:
+  print-schedule: ${PRINT_SCHEDULE}
+  order-api:
+    base-uri: ${ORDER_API_BASE_URI}
+  print-server:
+    host: ${PRINT_SERVER_HOST}
+    username: ${PRINT_SERVER_USERNAME}
+    private-key-path: ${PRINT_SERVER_PRIVATE_KEY_PATH}
+    printer-path: ${PRINT_SERVER_PRINTER_PATH}
