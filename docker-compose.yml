@@ -29,6 +29,22 @@ services:
       
     restart: always
 
+  spir-ordered-products-printer:
+    image: ghcr.io/fantastiskefroe/spir-ordered-products-printer:latest
+    volumes:
+      - ./spir-ordered-products-printer/application.override.yml:/application.yml
+      - ./spir-ordered-products-printer/private.key:/private.key
+    
+    environment:
+      PRINT_SCHEDULE: ${PRINT_SCHEDULE:-*/10 * * * * *}
+      ORDER_API_BASE_URI: ${ORDER_API_BASE_URI:-http://localhost:8080}
+      PRINT_SERVER_HOST: ${PRINT_SERVER_HOST:-localhost}
+      PRINT_SERVER_USERNAME: ${PRINT_SERVER_USERNAME:-root}
+      PRINT_SERVER_PRIVATE_KEY_PATH: ${PRINT_SERVER_PRIVATE_KEY_PATH:-/private.key}
+      PRINT_SERVER_PRINTER_PATH: ${PRINT_SERVER_PRINTER_PATH:-/print/}
+      
+    restart: always
+
   postgres:
     image: postgres:14.2-alpine
     volumes:
