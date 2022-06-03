@@ -17,7 +17,8 @@ services:
   spir-products:
     image: ghcr.io/fantastiskefroe/spir-products:latest
     environment:
-      SPIR_PRODUCTS_PORT: 80
+      PORT: 80
+      SENTRY_DSN: ${PRODUCTS_SENTRY_DSN}
     restart: always
 
   spir-qr:
