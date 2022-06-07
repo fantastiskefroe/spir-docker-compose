@@ -60,7 +60,7 @@ services:
       - havejournal_data:/var/www/html
     environment:
       WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_NAME: ${MARIADB_DB:-database}
+      WORDPRESS_DB_NAME: ${MARIADB_DATABASE:-database}
       WORDPRESS_DB_USER: ${MARIADB_USER:-user}
       WORDPRESS_DB_PASSWORD: ${MARIADB_PASSWORD:-password}
     restart: always
@@ -83,7 +83,7 @@ services:
       - mariadb_data:/var/lib/mysql
     environment:
       MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-root}
-      MARIADB_DB: ${MARIADB_DB:-database}
+      MARIADB_DATABASE: ${MARIADB_DATABASE:-database}
       MARIADB_USER: ${MARIADB_USER:-user}
       MARIADB_PASSWORD: ${MARIADB_PASSWORD:-password}
     restart: always
