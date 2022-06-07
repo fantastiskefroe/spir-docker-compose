@@ -52,6 +52,19 @@ services:
       PRINT_SERVER_PRINTER_PATH: ${PRINT_SERVER_PRINTER_PATH:-/print/}
     restart: always
 
+  havejournal:
+    depends_on:
+      - mariadb
+    image: wordpress:latest
+    volumes:
+      - havejournal_data:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME:-database}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER:-user}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD:-password}
+    restart: always
+
   postgres:
     image: postgres:14.2-alpine
     volumes:
@@ -81,3 +94,4 @@ volumes:
   caddy_config:
   postgres_data:
   mariadb_data:
+  havejournal_data:
