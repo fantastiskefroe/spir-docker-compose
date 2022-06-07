@@ -64,8 +64,20 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
     restart: always
 
-    
+  mariadb:
+    image: mariadb:10.8
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-root}
+      MARIADB_DATABASE: ${MARIADB_DATABASE:-database}
+      MARIADB_USER: ${MARIADB_ROOT_PASSWORD:-user}
+      MARIADB_PASSWORD: ${MARIADB_ROOT_PASSWORD:-password}
+    restart: always
+
+
 volumes:
   caddy_data:
   caddy_config:
   postgres_data:
+  mariadb_data:
