@@ -63,6 +63,7 @@ services:
       WORDPRESS_DB_NAME: ${MARIADB_DATABASE:-database}
       WORDPRESS_DB_USER: ${MARIADB_USER:-user}
       WORDPRESS_DB_PASSWORD: ${MARIADB_PASSWORD:-password}
+      WORDPRESS_TABLE_PREFIX: ${HAVEJOURNAL_WP_PREFIX:-wp_havejournal_}
     restart: always
 
   postgres:
