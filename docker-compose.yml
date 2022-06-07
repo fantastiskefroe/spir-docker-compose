@@ -31,13 +31,11 @@ services:
     image: ghcr.io/fantastiskefroe/spir-ingest:latest
     volumes:
       - ./spir-ingest/application.override.yml:/application.yml
-    
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-database}
       POSTGRES_USER: ${POSTGRES_USER:-user}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
       SHOPIFY_HMAC_KEY: ${SHOPIFY_HMAC_KEY:-testkey}
-      
     restart: always
 
   spir-ordered-products-printer:
@@ -45,7 +43,6 @@ services:
     volumes:
       - ./spir-ordered-products-printer/application.override.yml:/application.yml
       - ./spir-ordered-products-printer/private.key:/private.key
-    
     environment:
       PRINT_SCHEDULE: ${PRINT_SCHEDULE:-*/10 * * * * *}
       ORDER_API_BASE_URI: ${ORDER_API_BASE_URI:-http://localhost:8080}
@@ -53,7 +50,6 @@ services:
       PRINT_SERVER_USERNAME: ${PRINT_SERVER_USERNAME:-root}
       PRINT_SERVER_PRIVATE_KEY_PATH: ${PRINT_SERVER_PRIVATE_KEY_PATH:-/private.key}
       PRINT_SERVER_PRINTER_PATH: ${PRINT_SERVER_PRINTER_PATH:-/print/}
-      
     restart: always
 
   postgres:
