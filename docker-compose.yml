@@ -25,6 +25,10 @@ services:
     image: ghcr.io/fantastiskefroe/spir-qr:latest
     restart: always
 
+  spir-overview:
+    image: ghcr.io/fantastiskefroe/spir-qr:latest
+    restart: always
+
   spir-ingest:
     depends_on:
       - postgres
